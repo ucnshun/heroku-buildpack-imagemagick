@@ -66,6 +66,14 @@ cat > $INSTALL_DIR/policy.xml <<EOF
 </policymap>
 EOF
 
+echo "-----> Writing delegates file"
+mkdir -p $INSTALL_DIR/etc/ImageMagick
+cat > $INSTALL_DIR/delegates.xml <<EOF
+<delegatemap>
+  <delegate decode="https" command="&quot;curl&quot; -s -k -L -o &quot;%o&quot; &quot;https:%M&quot;"/>
+</delegatemap>
+EOF
+
 # update PATH and LD_LIBRARY_PATH
 echo "-----> Updating environment variables"
 PROFILE_PATH="$BUILD_DIR/.profile.d/imagemagick.sh"
