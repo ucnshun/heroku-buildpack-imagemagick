@@ -70,7 +70,7 @@ echo "-----> Writing delegates file"
 mkdir -p $INSTALL_DIR/etc/ImageMagick
 cat > $INSTALL_DIR/delegates.xml <<EOF
 <delegatemap>
-  <delegate decode="https:decode" command="&quot;@WWWDecodeDelegate@&quot; -s -k -L -o &quot;%u.dat&quot; &quot;https:%M&quot;"/>
+  <delegate decode="https:decode" command="&quot;curl&quot; -s -k -L -o &quot;%u.dat&quot; &quot;https:%M&quot;"/>
   <delegate decode="png" encode="bpg" command="&quot;@BPGEncodeDelegate@&quot; -b 12 -q &quot;%~&quot; -o &quot;%o&quot; &quot;%i&quot;"/>
   <delegate decode="pdf" encode="eps" mode="bi" command="&quot;@PSDelegate@&quot; -sstdout=%%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 -sPDFPassword=&quot;%a&quot; &quot;-sDEVICE=@GSEPSDevice@&quot; &quot;-sOutputFile=%o&quot; &quot;-f%i&quot;"/>
   <delegate decode="pdf" encode="ps" mode="bi" command="&quot;@PSDelegate@&quot; -sstdout=%%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 &quot;-sDEVICE=@GSPSDevice@&quot; -sPDFPassword=&quot;%a&quot; &quot;-sOutputFile=%o&quot; &quot;-f%i&quot;"/>
